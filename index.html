@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Remote Light Control</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 50px;
+      background-color: #f4f4f4;
+    }
+    button {
+      padding: 20px 40px;
+      font-size: 20px;
+      margin: 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .on { background-color: #4CAF50; color: white; }
+    .off { background-color: #f44336; color: white; }
+  </style>
+</head>
+<body>
+  <h1>🌍 Remote Light Control</h1>
+  <button class="on" onclick="setLight(1)">Turn ON</button>
+  <button class="off" onclick="setLight(0)">Turn OFF</button>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+  <script>
+    // Replace with your Firebase configuration
+    var firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+      projectId: "YOUR_PROJECT_ID"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    var db = firebase.database();
+
+    function setLight(state) {
+      db.ref("light").set(state);
+    }
+  </script>
+</body>
+</html>
